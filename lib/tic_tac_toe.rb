@@ -78,6 +78,7 @@ def won?(board)
   return false
 end
 
+
 def full?(board)
   full_board = board.all? do |index|
     index == "X" || index == "O"
@@ -112,10 +113,18 @@ def winner(board)
 end
 
 def play(board)
-  turn(board)
+  until over?(board)
+    turn(board)
+    break if won?(board) || draw?(board)
+  end
 
-
+  if won?(board)
+    puts "Congratulations #{winner(board)}!"
+  elsif draw?(board)
+    puts "Cat's Game!"
+  end
 end
+
 
 
 
